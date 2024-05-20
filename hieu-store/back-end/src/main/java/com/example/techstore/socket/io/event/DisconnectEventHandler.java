@@ -1,0 +1,21 @@
+package com.example.techstore.socket.io.event;
+
+import com.corundumstudio.socketio.SocketIOClient;
+import com.corundumstudio.socketio.annotation.OnDisconnect;
+import com.example.techstore.constant.CommonConstant;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+@Slf4j
+@Component
+public class DisconnectEventHandler {
+    @OnDisconnect
+    private void onDisconnect(SocketIOClient client) {
+        for (String room : client.getAllRooms()) {
+            client.leaveRoom(room);
+        }
+        String userId = client.get(CommonConstant.Key.USER_ID);
+        log.info("Client user with id {} disconnected", userId);
+    }
+
+}
