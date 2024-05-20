@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .news-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-wrap: wrap;
+        }
+
+        .news-items {
+            width: 45%;
+            display: flex;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .news-items:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-items img {
+            width: 100%;
+            object-fit: cover;
+            height: auto;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .news-description {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="news-container">
+        <div class="news-items">
+            <img src="./img/brand1.png" alt="Ảnh tin tức" style="align-items: center;">
+            <div class="news-content">
+                <h2 class="news-title">Tiêu đề tin tức</h2>
+                <p class="news-description">Nội dung tin tức sẽ được hiển thị ở đây. Bạn có thể viết một vài đoạn mô tả
+                    ngắn về tin tức này.</p>
+                <p class="news-description">Thêm các đoạn mô tả khác nếu cần.</p>
+            </div>
+        </div>
+        <div class="news-items">
+            <img src="./img/brand1.png" alt="Ảnh tin tức" style="align-items: center;">
+            <div class="news-content">
+                <h2 class="news-title">Tiêu đề tin tức</h2>
+                <p class="news-description">Nội dung tin tức sẽ được hiển thị ở đây. Bạn có thể viết một vài đoạn mô tả
+                    ngắn về tin tức này.</p>
+                <p class="news-description">Thêm các đoạn mô tả khác nếu cần.</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

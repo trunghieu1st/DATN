@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tech Store</title>
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
+        type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        #latest-product {
+            overflow: hidden;
+            /* Ẩn các phần tử tràn ra ngoài khung slider */
+            white-space: nowrap;
+            /* Ngăn các phần tử xuống dòng */
+        }
+
+        .single-product {
+            display: inline-block;
+            /* Hiển thị các sản phẩm theo hàng ngang */
+            margin-right: 20px;
+            /* Khoảng cách giữa các sản phẩm */
+        }
+
+        /* Chức năng đổi màu */
+        .dropdown-menu li a:hover {
+            background-color: aqua ; /* Màu xám nhạt cho ví dụ */
+        }
+        
+        .left-info {
+            width: 200px !important;margin-left: 250px;
+        }
+        .right-info {
+            width: 200px !important;margin-left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="user-menu">
+                        <ul>
+                            <li><a id="myaccount" href=""><i class="fa fa-user"></i>Tài khoản của tôi</a>
+                            </li>
+                            <li><a href="cart.html"><i class="fa fa-user"></i>Giỏ hàng</a></li>
+                            <li><a href="checkout.html"><i class="fa fa-user"></i>Đặt hàng</a></li>
+                            <li id="li-login"><a href="login.html"><i class="fa fa-user"></i>Đăng nhập</a></li>
+                            <li id="li-logout"><a id="li-username"><i class="fa fa-user"></i>Đăng xuất - </a></li>
+                        </ul>
+                        <script>
+                            async function fetchUserData() {
+                                var accessToken = localStorage.getItem('accessToken');
+                                if (accessToken) {
+                                    document.getElementById('li-login').style.display = 'none';
+                                    try {
+                                        const response = await fetch('http://localhost:8080/api/v1/user/my', {
+                                            method: 'GET',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'Authorization': 'Bearer ' + accessToken
+                                            }
+                                        });
+                                        if (response.ok) {
+                                            const data = await response.json();
+                                            document.getElementById('li-username').innerHTML += `<i>${data.data.username}</i>`;
+                                            document.getElementById('li-logout').addEventListener('click', function () {
+                                                localStorage.removeItem('accessToken');
+                                                window.location.reload();
+                                            });
+                                        } else {
+                                            // Xử lý trường hợp response không ok (ví dụ: hiển thị thông báo lỗi)
+                                        }
+                                    } catch (error) {
+                                        console.error('Lỗi khi gọi API:', error);
+                                    }
+                                } else {
+                                    document.getElementById('li-logout').style.display = 'none';
+                                }
+                            }
+                            fetchUserData();
+                        </script>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                            <li class="dropdown dropdown-small">
+                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle"><span
+                                        class="key"></span><span class="value">Chức năng</span><b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="information.html">Thông tin cá nhân</a></li>
+                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="checkout.html">Đặt hàng</a></li>
+                                    <li><a href="myorder.html">Đơn hàng</a></li>
+                                    <li><a href="index.html">Trang chủ</a></li>
+                                    <li><a href="login.html">Tài khoản khác</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------------------Giỏ hàng---------------------------------------------- -->
+    <script type="module" src="./js/api/number_card.js"></script>
+    <div class="site-branding-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+                        <a href="./"><img style="height: 55px;" src="img/logo.png"></a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        <a href="cart.html"><span class="cart-amunt">Giỏ hàng</span>
+                            <i class="fa fa-shopping-cart"></i>
+                            <span id="number-card" class="product-count"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------------------Menu ---------------------------------------------- -->
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li class="dropdown">
+                            <a href="category.html">Danh mục sản phẩm</a>
+                            <ul class="dropdown-menu" id="dropdown-menu">
+                            </ul>
+                        </li>
+                        <li><a href="shop.html">Danh sách sản phẩm</a></li>
+                        <li><a href="single-product.html">Thông tin sản phẩm</a></li>
+                        <li><a href="checkout.html">Đặt hàng</a></li>
+                        <li><a href="new.html">Tin tức</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="limiter">
+                        <div class="container-login100">
+                            <div class="wrap-login100" style="margin-top: 0px;padding: 20px;">
+                                <div class="tile">
+                                    <h3 style="text-align: center;padding: 10px;">Thông tin cá nhân</h3>
+                                    <div class="tile-body">
+                                        <form class="row" enctype="multipart/form-data" style="border: 10px;">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label left-info" for="username">Tên tài khoản:</label>
+                                                <input type="text" class="form-control left-info" id="username" name="username"
+                                                    required readonly style="width: 200px;margin-left: 250px;">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label right-info" for="fullName">Họ và tên:</label>
+                                                <input type="text" class="form-control right-info" id="fullName" name="fullName"
+                                                    required readonly>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label left-info" for="gender">Giới tính:</label>
+                                                <select class="form-control left-info" id="gender" disabled>
+                                                    <option value="" selected> </option>
+                                                    <option value="1">Nam</option>
+                                                    <option value="0">Nữ</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label right-info" for="birthday">Ngày sinh:</label>
+                                                <input type="date" class="form-control right-info" id="birthday" name="birthday"
+                                                    required readonly>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label left-info" for="phone">Số điện thoại:</label>
+                                                <input type="text" class="form-control left-info" id="phone" name="phone"
+                                                    required readonly>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label right-info"  for="email">Email:</label>
+                                                <input type="text" class="form-control right-info" id="email" name="email"
+                                                    required readonly>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label left-info" for="address">Address:</label>
+                                                <input type="text" class="form-control left-info" id="address" name="address"
+                                                    required readonly>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                               
+                                            </div>
+                                            <div class="form-group" style="margin-left: 12px;">
+                                                <label class="control-label right-info" for="avatar" style="margin-left: 52px;">Ảnh minh họa:</label> <br>
+                                                <img src="../images/noimage.png" name="avatar" id="avatar" width="120px"
+                                                    style="margin-bottom: 10px; margin-left: 52px;">
+                                                <input type="file" class="form-control" id="avatarFileInput"
+                                                    name="avatarFileInput" required style="display: none; margin-top: 5px;width: 300px;  margin-left: 600px;">
+                                            </div>
+                                            <div class="form-group" style="margin-left: 350px;">
+                                                <input type="button" class="form-control" value="Chỉnh sửa thông tin" id="editButton" style="width: 400px;"/>
+                                            </div>
+
+                                            <div class="container-login100-form-btn" style="display: block; justify-content: center;margin-left: 460px;">
+                                                <input type="button" value="Lưu lại" id="save" hidden />
+                                                <input type="button" value="Hủy bỏ" id="cancel" style="margin-top: 10px;" hidden />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------------------Thông tin chi tiết về cưqra hàng ---------------------------------------------- -->
+    <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2><span>Tech Store</span></h2>
+                        <p>Website bán điện thoại trực tuyến với những chiếc điện thoại mới nhất được cập nhập liên tục.
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://www.facebook.com/trunghieu1st/" target="_blank"><i
+                                    class="fa fa-facebook"></i></a>
+                            <!-- <a href="#" target="_blank"><i class="fa fa-twitter"></i></a> -->
+                            <a href="https://www.youtube.com/channel/UCofZpSuoW0D5fRM2hv6IOLQ" target="_blank"><i
+                                    class="fa fa-youtube"></i></a>
+                            <!-- <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Công cụ</h2>
+                        <ul>
+                            <li><a href="myaccount.html">Tài khoản của tôi</a></li>
+                            <li><a href="#">Lịch sử đặt hàng</a></li>
+                            <li><a href="cart.html">Giỏ hàng</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Danh mục sản phẩm</h2>
+                        <ul>
+                            <li><a href="#">Điện thoại iPhone</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-newsletter">
+                        <h2 class="footer-wid-title">Góp ý</h2>
+                        <p>Góp ý cho cửa hàng là một điều quan trọng để cửa hàng thay đổi tốt hơn và phát triển hơn!</p>
+                        <div class="newsletter-form">
+                            <form action="#">
+                                <input type="text" placeholder="Nhập góp ý của bạn..." style="margin-bottom: 5px;">
+                                <input type="submit" value="Gửi góp ý">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Latest jQuery form server -->
+
+    <!-- <script type="module" src="checklogin.js"></script> -->
+    <script type="module" src="./js/api/checkaccount.js"></script>
+    <script type="module" src="./js/api/category.js"></script>
+    <!-- Slider -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+    <script type="module" src="./js/api/myaccount.js"></script>
+
+</body>
+
+</html>

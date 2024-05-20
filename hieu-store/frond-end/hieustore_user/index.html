@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tech Store</title>
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
+        type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        #latest-product {
+            overflow: hidden;
+            /* Ẩn các phần tử tràn ra ngoài khung slider */
+            white-space: nowrap;
+            /* Ngăn các phần tử xuống dòng */
+        }
+
+        .single-product {
+            display: inline-block;
+            /* Hiển thị các sản phẩm theo hàng ngang */
+            margin-right: 20px;
+            /* Khoảng cách giữa các sản phẩm */
+        }
+        .dropdown-menu li a:hover {
+            background-color: aqua ; /* Màu xám nhạt cho ví dụ */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="user-menu">
+                        <ul>
+                            <li><a id="myaccount" href=""><i class="fa fa-user"></i>Tài khoản của tôi</a>
+                            </li>
+                            <li><a href="cart.html"><i class="fa fa-user"></i>Giỏ hàng</a></li>
+                            <li><a href="checkout.html"><i class="fa fa-user"></i>Đặt hàng</a></li>
+                            <li id="li-login"><a href="login.html"><i class="fa fa-user"></i>Đăng nhập</a></li>
+                            <li id="li-logout"><a id="li-username"><i class="fa fa-user"></i>Đăng xuất - </a></li>
+                        </ul>
+                        <script>
+                            async function fetchUserData() {
+                                var accessToken = localStorage.getItem('accessToken');
+                                if (accessToken) {
+                                    document.getElementById('li-login').style.display = 'none';
+                                    try {
+                                        const response = await fetch('http://localhost:8080/api/v1/user/my', {
+                                            method: 'GET',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'Authorization': 'Bearer ' + accessToken
+                                            }
+                                        });
+                                        if (response.ok) {
+                                            const data = await response.json();
+                                            document.getElementById('li-username').innerHTML += `<i>${data.data.username}</i>`;
+                                            document.getElementById('li-logout').addEventListener('click', function () {
+                                                localStorage.removeItem('accessToken');
+                                                window.location.reload();
+                                            });
+                                        } else {
+                                            // Xử lý trường hợp response không ok (ví dụ: hiển thị thông báo lỗi)
+                                        }
+                                    } catch (error) {
+                                        console.error('Lỗi khi gọi API:', error);
+                                    }
+                                } else {
+                                    document.getElementById('li-logout').style.display = 'none';
+                                }
+                            }
+                            fetchUserData();
+                        </script>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                            <li class="dropdown dropdown-small">
+                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span
+                                        class="key"></span><span class="value">Chức năng</span><b
+                                        class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="information.html">Thông tin cá nhân</a></li>
+                                    <li><a href="cart.html">Giỏ hàng</a></li>
+                                    <li><a href="checkout.html">Đặt hàng</a></li>
+                                    <li><a href="myorder.html">Đơn hàng</a></li>
+                                    <li><a href="index.html">Trang chủ</a></li>
+                                    <li><a href="login.html">Tài khoản khác</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------------------Giỏ hàng---------------------------------------------- -->
+    <script type="module" src="./js/api/number_card.js"></script>
+    <div class="site-branding-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+                        <a href="./"><img style="height: 55px;" src="img/logo.png"></a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        <a href="cart.html"><span class="cart-amunt">Giỏ hàng</span>
+                            <i class="fa fa-shopping-cart"></i>
+                            <span id="number-card" class="product-count"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------------------Menu ---------------------------------------------- -->
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html">Trang chủ</a></li>
+                        <li class="dropdown">
+                            <a href="category.html">Danh mục sản phẩm</a>
+                            <ul class="dropdown-menu" id="dropdown-menu">
+                            </ul>
+                        </li>
+                        <li><a href="shop.html">Danh sách sản phẩm</a></li>
+                        <li><a href="single-product.html">Thông tin sản phẩm</a></li>
+                        <li><a href="checkout.html">Đặt hàng</a></li>
+                        <li><a href="new.html">Tin tức</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End mainmenu area -->
+    <script type="module" src="./js/api/index.js"></script>
+    <div class="slider-area">
+        <!-- Slider -->
+        <div class="block-slider block-slider4">
+            <ul id="bxslider-home4">
+            </ul>
+        </div>
+        <!-- ./Slider -->
+    </div> <!-- End slider area -->
+    <!-- ------------------------------------------------Sản phẩm mưới nhất ---------------------------------------------- -->
+    <script type="module" src="./js/api/lastestproduct.js"></script>
+    <!-- ---------------------------------------------------------Them vao gio hang ---------------------------------- -->
+    <script>
+        var accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+            console.error('Access token not found');
+        }
+        async function addToCart(productId) {
+            const quantity = 1; // Số lượng mặc định là 1
+            try {
+                const response = await fetch('http://localhost:8080/api/v1/cart/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + accessToken
+                    },
+                    body: JSON.stringify({
+                        productOptionId: productId,
+                        quantity: quantity
+                    })
+                });
+                if (response.ok) {
+                    console.log('Product added to cart successfully');
+                    alert('Sản phẩm đã được thêm vào giỏ hàng!');
+                } else {
+                    console.error('Failed to add product to cart');
+                }
+            } catch (error) {
+                console.error('Error adding product to cart:', error);
+            }
+        }
+    </script>
+    <!-- --------------------------------------Chi tiet san pham-------------------------------------------------- -->
+    <script>
+        function seeDetails(productId) {
+            localStorage.setItem('productId', productId);
+        }
+    </script>
+
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="latest-product">
+                        <h2 class="section-title">Sản phẩm mới nhất</h2>
+                        <div class="product-carousel" id="latest-product">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------------------Thông tin chi tiết về cưqra hàng ---------------------------------------------- -->
+    <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2><span>Tech Store</span></h2>
+                        <p>Website bán điện thoại trực tuyến với những chiếc điện thoại mới nhất được cập nhập liên tục.
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://www.facebook.com/trunghieu1st/" target="_blank"><i
+                                    class="fa fa-facebook"></i></a>
+                            <!-- <a href="#" target="_blank"><i class="fa fa-twitter"></i></a> -->
+                            <a href="https://www.youtube.com/channel/UCofZpSuoW0D5fRM2hv6IOLQ" target="_blank"><i
+                                    class="fa fa-youtube"></i></a>
+                            <!-- <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Công cụ</h2>
+                        <ul>
+                            <li><a href="myaccount.html">Tài khoản của tôi</a></li>
+                            <li><a href="#">Lịch sử đặt hàng</a></li>
+                            <li><a href="cart.html">Giỏ hàng</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Danh mục sản phẩm</h2>
+                        <ul>
+                            <li><a href="#">Điện thoại iPhone</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-newsletter">
+                        <h2 class="footer-wid-title">Góp ý</h2>
+                        <p>Góp ý cho cửa hàng là một điều quan trọng để cửa hàng thay đổi tốt hơn và phát triển hơn!</p>
+                        <div class="newsletter-form">
+                            <form action="#">
+                                <input type="text" placeholder="Nhập góp ý của bạn..." style="margin-bottom: 5px;">
+                                <input type="submit" value="Gửi góp ý">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End footer top area -->
+    <!-- <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p>&copy; 2024 TechStore. <a href="#"
+                                target="_blank"></a></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-card-icon">
+                        <i class="fa fa-cc-discover"></i>
+                        <i class="fa fa-cc-mastercard"></i>
+                        <i class="fa fa-cc-paypal"></i>
+                        <i class="fa fa-cc-visa"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  -->
+    <!-- Latest jQuery form server -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- jQuery sticky menu -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <!-- jQuery easing -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
+    <!-- <script type="module" src="checklogin.js"></script> -->
+    <script type="module" src="./js/api/checkaccount.js"></script>
+    <script type="module" src="./js/api/category.js"></script>
+    <!-- Slider -->
+    <script type="text/javascript" src="js/bxslider.min.js"></script>
+    <script type="text/javascript" src="js/script.slider.js"></script>
+</body>
+
+</html>

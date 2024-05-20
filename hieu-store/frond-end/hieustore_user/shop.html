@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sản phẩm - TechStore</title>
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet'
+        type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://static-product.cellphones.com.vn/css/a2f0f46.css">
+    <link rel="stylesheet" href="https://static-product.cellphones.com.vn/css/02782d1.css">
+    <link rel="stylesheet" href="https://static-product.cellphones.com.vn/css/fc17655.css">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Chức năng đổi màu */
+        .dropdown-menu li a:hover {
+           background-color: aqua ; /* Màu xám nhạt cho ví dụ */
+       }
+   </style>
+</head>
+
+<body>
+    <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="user-menu">
+                        <ul>
+                            <li><a id="myaccount" href="myaccount.html"><i class="fa fa-user"></i>Tài khoản của tôi</a>
+                            </li>
+                            <li><a href="cart.html"><i class="fa fa-user"></i>Giỏ hàng</a></li>
+                            <li><a href="checkout.html"><i class="fa fa-user"></i>Đặt hàng</a></li>
+                            <li id="li-login"><a href="login.html"><i class="fa fa-user"></i>Đăng nhập</a></li>
+                            <li id="li-logout"><a id="li-username"><i class="fa fa-user"></i>Đăng xuất - </a></li>
+                        </ul>
+                        <script>
+                            async function fetchUserData() {
+                                var accessToken = localStorage.getItem('accessToken');
+                                if (accessToken) {
+                                    document.getElementById('li-login').style.display = 'none';
+                                    try {
+                                        const response = await fetch('http://localhost:8080/api/v1/user/my', {
+                                            method: 'GET',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'Authorization': 'Bearer ' + accessToken
+                                            }
+                                        });
+                                        if (response.ok) {
+                                            const data = await response.json();
+                                            document.getElementById('li-username').innerHTML += `<i>${data.data.username}</i>`;
+                                            document.getElementById('li-logout').addEventListener('click', function () {
+                                                localStorage.removeItem('accessToken');
+                                                window.location.reload();
+                                            });
+                                        } else {
+                                            // Xử lý trường hợp response không ok (ví dụ: hiển thị thông báo lỗi)
+                                        }
+                                    } catch (error) {
+                                        console.error('Lỗi khi gọi API:', error);
+                                    }
+                                } else {
+                                    document.getElementById('li-logout').style.display = 'none';
+                                }
+                            }
+                            fetchUserData();
+                        </script>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                            <li class="dropdown dropdown-small">
+                                <ul class="list-unstyled list-inline">
+                                    <li class="dropdown dropdown-small">
+                                        <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle"
+                                            href="#"><span class="key"></span><span class="value">Chức năng</span><b
+                                                class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="information.html">Thông tin cá nhân</a></li>
+                                            <li><a href="cart.html">Giỏ hàng</a></li>
+                                            <li><a href="checkout.html">Đặt hàng</a></li>
+                                            <li><a href="myorder.html">Đơn hàng</a></li>
+                                            <li><a href="index.html">Trang chủ</a></li>
+                                            <li><a href="login.html">Tài khoản khác</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./js/api/number_card.js"></script>
+    <div class="site-branding-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+                        <a href="./"><img style="height: 55px;" src="img/logo.png"></a>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        <a href="cart.html"><span class="cart-amunt">Giỏ hàng</span>
+                            <i class="fa fa-shopping-cart"></i>
+                            <span id="number-card" class="product-count"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Danh mục sản phẩm <b
+                                    class="caret"></b></a>
+                            <ul class="dropdown-menu" id="dropdown-menu">
+                                <!-- <li><a href="dien-thoai.html">Điện thoại</a></li>
+                                <li><a href="may-tinh.html">Máy tính</a></li>
+                                <li><a href="phu-kien.html">Phụ kiện</a></li> -->
+                            </ul>
+                        </li>
+                        <li class="active"><a href="shop.html">Danh sách sản phẩm</a></li>
+                        <li><a href="single-product.html">Thông tin sản phẩm</a></li>
+                        <li><a href="checkout.html">Đặt hàng</a></li>
+                        <li><a href="new.html">Tin tức</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-big-title-area" style="margin: 20px;">
+
+
+    </div>
+
+    <div style="height: 150px; margin-left: 13%">
+        <div class="block-filter-sort">
+
+            <div class="filter-module-container bannerTopHead">
+                <div id="filterModule" class="">
+                    <div class="filter-sort__list-filter">
+
+                        <input id="keyword" type="text" placeholder="Nhập tên sản phẩm" style="width: 300px;">
+                        <input id="search" type="submit" value="Tìm kiếm">
+
+                        <div class="filter-wrapper" style="margin-left: 120px;">
+                            <button id="showFitter" class="btn-filter button__filter-parent" style="width: 100px;">
+                                <div class="icon mr-1 ml-0">
+                                    <svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path d="M3.853 54.87C10.47 40.9 24.54 32 40 32H472C487.5 32 501.5 40.9 
+                                            508.1 54.87C514.8 68.84 512.7 85.37 502.1 97.33L320 320.9V448C320 460.1
+                                            313.2 471.2 302.3 476.6C291.5 482 278.5 480.9 268.8 473.6L204.8 425.6C196.7
+                                            419.6 192 410.1 192 400V320.9L9.042 97.33C-.745 85.37-2.765 68.84 3.854
+                                            54.87L3.853 54.87z">
+                                        </path>
+                                    </svg></div>
+                                Bộ lọc
+                            </button>
+
+                            <div id="filterAll" class="list-filter-child all">
+
+                                <div class="listFilter">
+                                    <div class="filter-wrapper">
+                                        <div class="is-flex title-filter">
+                                            <p>Bộ nhớ trong</p>
+                                        </div>
+                                        <ul>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Trên 512GB
+                                                </button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child ">
+                                                    128GB và 256GB
+                                                </button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    32GB và 64GB
+                                                </button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="is-flex title-filter">
+                                            <p>Dung lượng RAM</p>
+                                        </div>
+                                        <ul>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    4GB - 6GB
+                                                </button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    8GB - 12GB
+                                                </button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Dưới 4GB
+                                                </button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="is-flex title-filter">
+                                            <p>Kích thước màn hình</p>
+                                        </div>
+                                        <ul>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Trên 6 inch
+                                                </button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Dưới 6 inch
+                                                </button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="is-flex title-filter">
+                                            <p>Nhu cầu sử dụng</p>
+                                        </div>
+                                        <ul>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Dung lượng lớn
+
+                                                </button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Cấu hình cao
+
+                                                </button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Chơi game
+
+                                                </button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Pin trâu
+                                                </button></li>
+                                        </ul>
+                                    </div><!----><!----><!---->
+                                    <div class="filter-wrapper">
+                                        <div class="is-flex title-filter">
+                                            <p>Kiểu màn hình</p>
+                                        </div>
+                                        <ul>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Dynamic Island</button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Tai thỏ</button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="is-flex title-filter">
+                                            <p>Tính năng camera</p>
+                                        </div>
+                                        <ul>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Chụp góc rộng</button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Quay video 4K</button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Chống rung</button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="is-flex title-filter">
+                                            <p>Tần số quét </p>
+                                        </div>
+                                        <ul>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    60Hz</button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    120Hz</button></li>
+                                        </ul>
+                                    </div>
+                                    <div class="filter-wrapper">
+                                        <div class="is-flex title-filter">
+                                            <p>Tính năng đặc biệt</p>
+                                        </div>
+                                        <ul>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Hỗ trợ 5G</button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Sạc không dây</button></li>
+                                            <li><button class="btn-filter btn-filter-item button__filter-child">
+                                                    Nhận diện khuôn mặt</button></li>
+                                        </ul>
+                                    </div><!---->
+                                </div>
+                                <div class="btn-filter-group show">
+                                    <button id="hideFitter"
+                                        class="button is-small is-danger is-light">Đóng
+                                    </button>
+                                    <button class="button is-small is-danger submit" style="background-color: rgb(134, 233, 233);">
+                                        Xem kết quả
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!---->
+                </div>
+
+            </div>
+            <div class="filter-sort__title">Sắp xếp theo</div>
+            <div class="filter-sort__list-filter"><a class="btn-filter button__sort">
+                    <div class="icon"><svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                            <path
+                                d="M416 288h-95.1c-17.67 0-32 14.33-32 32s14.33 32 32 32H416c17.67 0 32-14.33 32-32S433.7 288 416 288zM544 32h-223.1c-17.67 0-32 14.33-32 32s14.33 32 32 32H544c17.67 0 32-14.33 32-32S561.7 32 544 32zM352 416h-32c-17.67 0-32 14.33-32 32s14.33 32 32 32h32c17.67 0 31.1-14.33 31.1-32S369.7 416 352 416zM480 160h-159.1c-17.67 0-32 14.33-32 32s14.33 32 32 32H480c17.67 0 32-14.33 32-32S497.7 160 480 160zM192.4 330.7L160 366.1V64.03C160 46.33 145.7 32 128 32S96 46.33 96 64.03v302L63.6 330.7c-6.312-6.883-14.94-10.38-23.61-10.38c-7.719 0-15.47 2.781-21.61 8.414c-13.03 11.95-13.9 32.22-1.969 45.27l87.1 96.09c12.12 13.26 35.06 13.26 47.19 0l87.1-96.09c11.94-13.05 11.06-33.31-1.969-45.27C224.6 316.8 204.4 317.7 192.4 330.7z">
+                            </path>
+                        </svg></div>
+                    Giá Cao - Thấp
+                </a>
+                <a class="btn-filter button__sort">
+                    <div class="icon"><svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                            <path
+                                d="M320 224H416c17.67 0 32-14.33 32-32s-14.33-32-32-32h-95.1c-17.67 0-32 14.33-32 32S302.3 224 320 224zM320 352H480c17.67 0 32-14.33 32-32s-14.33-32-32-32h-159.1c-17.67 0-32 14.33-32 32S302.3 352 320 352zM320 96h32c17.67 0 31.1-14.33 31.1-32s-14.33-32-31.1-32h-32c-17.67 0-32 14.33-32 32S302.3 96 320 96zM544 416h-223.1c-17.67 0-32 14.33-32 32s14.33 32 32 32H544c17.67 0 32-14.33 32-32S561.7 416 544 416zM192.4 330.7L160 366.1V64.03C160 46.33 145.7 32 128 32S96 46.33 96 64.03v302L63.6 330.7c-6.312-6.883-14.94-10.38-23.61-10.38c-7.719 0-15.47 2.781-21.61 8.414c-13.03 11.95-13.9 32.22-1.969 45.27l87.1 96.09c12.12 13.26 35.06 13.26 47.19 0l87.1-96.09c11.94-13.05 11.06-33.31-1.969-45.27C224.6 316.8 204.4 317.7 192.4 330.7z">
+                            </path>
+                        </svg></div>
+                    Giá Thấp - Cao
+                </a>
+                <a class="btn-filter button__sort">
+                    <div class="icon"><svg height="15" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                            <path
+                                d="M320 224H416c17.67 0 32-14.33 32-32s-14.33-32-32-32h-95.1c-17.67 0-32 14.33-32 32S302.3 224 320 224zM320 352H480c17.67 0 32-14.33 32-32s-14.33-32-32-32h-159.1c-17.67 0-32 14.33-32 32S302.3 352 320 352zM320 96h32c17.67 0 31.1-14.33 31.1-32s-14.33-32-31.1-32h-32c-17.67 0-32 14.33-32 32S302.3 96 320 96zM544 416h-223.1c-17.67 0-32 14.33-32 32s14.33 32 32 32H544c17.67 0 32-14.33 32-32S561.7 416 544 416zM192.4 330.7L160 366.1V64.03C160 46.33 145.7 32 128 32S96 46.33 96 64.03v302L63.6 330.7c-6.312-6.883-14.94-10.38-23.61-10.38c-7.719 0-15.47 2.781-21.61 8.414c-13.03 11.95-13.9 32.22-1.969 45.27l87.1 96.09c12.12 13.26 35.06 13.26 47.19 0l87.1-96.09c11.94-13.05 11.06-33.31-1.969-45.27C224.6 316.8 204.4 317.7 192.4 330.7z">
+                            </path>
+                        </svg></div>
+                    Tên
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- ------------------------------------------------Tất cả sản phẩm ---------------------------------------------- -->
+    <script type="module" src="./js/api/shopage.js"></script>
+    <script type="module" src="./js/api/productinfo.js"></script>
+    <div class="single-product-area" style="margin-top: 0px ; padding: 0px;">
+        <div class="container" style="margin-top: 0px ;">
+            <div class="row" id="shop-page">
+            </div>
+            <!-- ------------------------------------------------Phân trang sản phẩm ---------------------------------------------- -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-pagination text-center">
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------Thông tin chi tiết về cưqra hàng ---------------------------------------------- -->
+        <div class="footer-top-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-about-us">
+                            <h2><span>Tech Store</span></h2>
+                            <p>Website bán điện thoại trực tuyến với những chiếc điện thoại mới nhất được cập nhập liên
+                                tục.</p>
+                            <div class="footer-social">
+                                <a href="https://www.facebook.com/trunghieu1st/" target="_blank"><i
+                                        class="fa fa-facebook"></i></a>
+                                <!-- <a href="#" target="_blank"><i class="fa fa-twitter"></i></a> -->
+                                <a href="https://www.youtube.com/channel/UCofZpSuoW0D5fRM2hv6IOLQ" target="_blank"><i
+                                        class="fa fa-youtube"></i></a>
+                                <!-- <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-menu">
+                            <h2 class="footer-wid-title">Công cụ</h2>
+                            <ul>
+                                <li><a href="myaccount.html">Tài khoản của tôi</a></li>
+                                <li><a href="#">Lịch sử đặt hàng</a></li>
+                                <li><a href="cart.html">Giỏ hàng</a></li>
+                                <li><a href="#">Trang chủ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-menu">
+                            <h2 class="footer-wid-title">Danh mục sản phẩm</h2>
+                            <ul>
+                                <li><a href="#">Điện thoại iPhone</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-newsletter">
+                            <h2 class="footer-wid-title">Góp ý</h2>
+                            <p>Góp ý cho cửa hàng là một điều quan trọng để cửa hàng thay đổi tốt hơn và phát triển hơn!
+                            </p>
+                            <div class="newsletter-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Nhập góp ý của bạn..." style="margin-bottom: 5px;">
+                                    <input type="submit" value="Gửi góp ý">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Latest jQuery form server -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <!-- Bootstrap JS form CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <!-- jQuery sticky menu -->
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <!-- jQuery easing -->
+        <script src="js/jquery.easing.1.3.min.js"></script>
+        <!-- Main Script -->
+        <script src="js/main.js"></script>
+        <script type="module" src="./js/api/add_to_card.js"></script>
+        <script src="./js/api/checkaccount.js"></script>
+        <script src="./js/api/fitter.js"></script>
+        <script type="module" src="./js/api/category.js"></script>
+        <!-- <script type="module" src="./js/api/checklogin.js"></script> -->
+        <script>
+            var accessToken = localStorage.getItem('accessToken');
+            if (!accessToken) {
+                console.error('Access token not found');
+            }
+            async function addToCart(productId) {
+                const quantity = 1; // Số lượng mặc định là 1
+                try {
+                    const response = await fetch('http://localhost:8080/api/v1/cart/create', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + accessToken
+                        },
+                        body: JSON.stringify({
+                            productOptionId: productId,
+                            quantity: quantity
+                        })
+                    });
+                    if (response.ok) {
+                        console.log('Product added to cart successfully');
+                        alert('Sản phẩm đã được thêm vào giỏ hàng!');
+                    } else {
+                        console.error('Failed to add product to cart');
+                    }
+                } catch (error) {
+                    console.error('Error adding product to cart:', error);
+                }
+            }
+        </script>
+</body>
+
+</html>
