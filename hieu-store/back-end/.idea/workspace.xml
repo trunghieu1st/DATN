@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="de212e26-87a8-4650-bb4a-e25999dfefdc" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2ZgAv1VNOlT9Q9gPzqhq1RNSY23" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showScratchesAndConsoles" value="false" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/message&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/stsie/Downloads/MobileCity&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;settings.editor.splitter.proportion&quot;: &quot;0.3058104&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;506f1c383b35892c0208c43001c67b21&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\stsie\Documents\tech-store\src\main\java\com\example\techstore" />
+      <recent name="C:\Users\stsie\Documents\tech-store\src\main\java\com\example\techstore\repository" />
+      <recent name="C:\Users\stsie\Documents\tech-store\src\main\java\com\example\techstore\domain\mapper" />
+      <recent name="C:\Users\stsie\Documents\tech-store\src\main\java\com\example\techstore\domain\dto\request" />
+      <recent name="C:\Users\stsie\Documents\tech-store\src\main\java\com\example\techstore\domain\dto\response" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.techstore.service.impl" />
+      <recent name="com.example.techstore.service" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TechStoreApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="tech-store" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.techstore.TechStoreApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="de212e26-87a8-4650-bb4a-e25999dfefdc" name="Changes" comment="" />
+      <created>1702833575597</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1702833575597</updated>
+      <workItem from="1702833577416" duration="3000" />
+      <workItem from="1702833656854" duration="395000" />
+      <workItem from="1704819775141" duration="485000" />
+      <workItem from="1704820593170" duration="1796000" />
+      <workItem from="1704868251811" duration="26848000" />
+      <workItem from="1704947057957" duration="18434000" />
+      <workItem from="1704988885487" duration="1227000" />
+      <workItem from="1704991204498" duration="3919000" />
+      <workItem from="1705068359561" duration="5175000" />
+      <workItem from="1705118709720" duration="10030000" />
+      <workItem from="1705207012215" duration="6289000" />
+      <workItem from="1705722514886" duration="4088000" />
+      <workItem from="1705839224076" duration="703000" />
+      <workItem from="1705853548330" duration="669000" />
+      <workItem from="1705899157010" duration="5630000" />
+      <workItem from="1705998747998" duration="915000" />
+      <workItem from="1705999716128" duration="191000" />
+      <workItem from="1706003585483" duration="270000" />
+      <workItem from="1706087656512" duration="4798000" />
+      <workItem from="1706177875436" duration="5714000" />
+      <workItem from="1706244335912" duration="1815000" />
+      <workItem from="1706525167459" duration="1247000" />
+      <workItem from="1706611443398" duration="590000" />
+      <workItem from="1706783469974" duration="106000" />
+      <workItem from="1707139925540" duration="670000" />
+      <workItem from="1707203127219" duration="34000" />
+      <workItem from="1708933307874" duration="3605000" />
+      <workItem from="1709046161265" duration="1265000" />
+      <workItem from="1709104726639" duration="5426000" />
+      <workItem from="1709191383956" duration="895000" />
+      <workItem from="1709217707926" duration="1635000" />
+      <workItem from="1709229735784" duration="2307000" />
+      <workItem from="1709264622347" duration="3968000" />
+      <workItem from="1709432745325" duration="6050000" />
+      <workItem from="1709545867311" duration="845000" />
+      <workItem from="1709571782680" duration="3129000" />
+      <workItem from="1709614669938" duration="6686000" />
+      <workItem from="1710051345142" duration="6638000" />
+      <workItem from="1710098685417" duration="994000" />
+      <workItem from="1710123454557" duration="905000" />
+      <workItem from="1711808557569" duration="74000" />
+      <workItem from="1712303729553" duration="749000" />
+      <workItem from="1713682937513" duration="3236000" />
+      <workItem from="1714112602354" duration="3469000" />
+      <workItem from="1714212882738" duration="2173000" />
+      <workItem from="1714242588997" duration="2055000" />
+      <workItem from="1714270442043" duration="1827000" />
+      <workItem from="1714814025348" duration="2601000" />
+      <workItem from="1714971596959" duration="6115000" />
+      <workItem from="1715073525965" duration="7240000" />
+      <workItem from="1715147758832" duration="3293000" />
+      <workItem from="1715237407108" duration="3099000" />
+      <workItem from="1715363530273" duration="1431000" />
+      <workItem from="1715397151564" duration="763000" />
+      <workItem from="1715449065373" duration="621000" />
+      <workItem from="1715846838839" duration="4043000" />
+      <workItem from="1715867539817" duration="864000" />
+      <workItem from="1715923253166" duration="2951000" />
+      <workItem from="1715997366236" duration="680000" />
+      <workItem from="1716010204845" duration="651000" />
+      <workItem from="1716196131902" duration="649000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-core" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:io.projectreactor:reactor-core" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:org.thymeleaf:thymeleaf" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
